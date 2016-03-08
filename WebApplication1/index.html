@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <div>
+        <h2>Login User:</h2>
+    </div>
+    <div>
+        <form action="api/user" method="post">
+            <input type="text" name="email" id="i_email" />
+            <input type="text" name="nickname" id="i_nick" />
+            <input type="password" name="password" id="i_pass" />
+            <input type="submit" value="login" />
+        </form>
+    </div>
+    <div> <p id="user_info"></p> </div>
+    <script>
+
+        var email = $('#i_email').val();
+        var nickName = $('#i_nick').val();
+        var password = $('#i_pass').val();
+        var userObj = [{ "email": email, "nickName": nickName, "password": password }];
+        $.ajax({
+            data: JSON.stringify(userObj),
+            url: "/api/User/Login",
+            contentType: "application/json"
+        }).done(function(res){
+                console.log("res",res);
+        });
+    </script>
+</body>
+</html>
